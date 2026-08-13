@@ -32,6 +32,29 @@ Photos are placeholder boxes (`.photo-slot`) until real vehicle/lot photos are
 dropped in — search each HTML file for `data-label` to find every slot and
 its caption.
 
+## Colour and contrast
+
+The palette is defined once, as CSS custom properties at the top of
+[`styles.css`](styles.css) — change it there and the whole site follows.
+
+Every piece of text on the site meets **WCAG AA** contrast (4.5:1 for normal
+text, 3:1 for large). Two rules keep it that way:
+
+- Yellow surfaces always take navy text, never white.
+- `--muted-2` is for placeholder text and is already at the AA floor; don't
+  lighten it.
+
+After changing any colour, re-check with the bundled auditor. Serve the site,
+open a page, and paste this in the browser console — it walks every text
+element, resolves its real background, and lists anything under threshold:
+
+```js
+fetch('/tools/contrast-audit.js').then(r => r.text()).then(eval)
+```
+
+It reports `{"failures": 0}` when the page is clean. Note it reads text nodes
+only, so input **placeholder** colours need checking by hand.
+
 ## Known gaps before this goes live
 
 - The financing pre-qualify form (`financing.js`) only toggles a client-side
