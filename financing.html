@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Financing — Discount Auto LLC</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Pre-qualify for financing in two minutes at Discount Auto LLC. No SSN required, no impact on your credit score.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="container">
+    <div class="utility-left"><span class="addr">4280 E Lincoln Hwy (US 30), Merrillville, IN 46410</span></div>
+    <div class="utility-right"><a href="tel:2602188260">Sales — Call or Text (260) 218-8260</a></div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container bar">
+    <a href="index.html" class="brand">
+      <div class="brand-badge">DA</div>
+      <div>
+        <div class="brand-name">Discount Auto</div>
+        <div class="brand-sub">Merrillville, Indiana</div>
+      </div>
+    </a>
+    <nav class="main-nav">
+      <a href="inventory.html">Inventory</a>
+      <a href="financing.html" class="active">Financing</a>
+      <a href="#trade">Trade-In</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="index.html#visit">Visit Us</a>
+    </nav>
+    <a href="tel:2602188260" class="btn btn-primary header-cta">Call or Text</a>
+    <button class="hamburger" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+<nav class="mobile-nav">
+  <div class="container">
+    <a href="inventory.html">Inventory</a>
+    <a href="financing.html" class="active">Financing</a>
+    <a href="#trade">Trade-In</a>
+    <a href="index.html#reviews">Reviews</a>
+    <a href="index.html#visit">Visit Us</a>
+    <a href="tel:2602188260" class="btn btn-primary btn-block">Call or Text</a>
+  </div>
+</nav>
+
+<main>
+  <section class="section-dark fin-hero">
+    <div class="container split">
+      <div>
+        <div class="eyebrow">Financing</div>
+        <h1>Pre-qualify in two minutes</h1>
+        <p class="lede">Good credit, bad credit, no credit — we work with lenders who say yes. Fill this out and we'll call you back with real numbers, usually within the hour.</p>
+        <ul class="checklist">
+          <li>No SSN required to pre-qualify</li>
+          <li>No impact on your credit score</li>
+          <li>Trade-ins count toward your down payment</li>
+          <li>Most deals done same day</li>
+        </ul>
+      </div>
+
+      <div class="form-card">
+        <form id="prequal-form" class="form-fields" novalidate>
+          <h3>Get pre-qualified</h3>
+          <div class="field-grid two" style="margin-top:14px">
+            <label class="field">First name
+              <input type="text" placeholder="Jane" required>
+            </label>
+            <label class="field">Last name
+              <input type="text" placeholder="Doe" required>
+            </label>
+          </div>
+          <label class="field" style="margin-top:12px">Mobile phone
+            <input type="tel" placeholder="(219) 555-0100" required>
+          </label>
+          <div class="field-grid two" style="margin-top:12px">
+            <label class="field">Monthly income
+              <input type="text" placeholder="$3,200" required>
+            </label>
+            <label class="field">Employment
+              <select required>
+                <option value="" selected disabled>Choose one</option>
+                <option>Employed full-time</option>
+                <option>Employed part-time</option>
+                <option>Self-employed</option>
+                <option>Retired / fixed income</option>
+                <option>Other</option>
+              </select>
+            </label>
+          </div>
+          <label class="checkbox-line" style="margin-top:14px">
+            <input type="checkbox">I have a vehicle to trade in
+          </label>
+          <button type="submit" class="btn btn-primary btn-block" style="margin-top:16px; font-size:19px">Send my pre-qualification</button>
+          <div class="form-fine" style="margin-top:12px">By submitting you agree to be contacted by Discount Auto LLC by phone or text. No mobile information is shared with third parties. Msg &amp; data rates may apply.</div>
+        </form>
+
+        <div class="form-success" id="form-success">
+          <div class="check">✓</div>
+          <h3>You're in the queue</h3>
+          <p>We'll call or text you back with real numbers — usually within the hour during business hours. Want to skip the wait? Call <a href="tel:2602188260">(260) 218-8260</a>.</p>
+          <button type="button" class="btn btn-ghost" style="border-color:var(--ink)" id="reset-form">Back to form</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container">
+      <div class="steps light">
+        <div class="step">
+          <div class="num">1</div>
+          <div class="t">Pre-qualify online</div>
+          <div class="d">Two minutes, no SSN, no hit to your credit. We call you back with what you can spend.</div>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <div class="t">Pick your car</div>
+          <div class="d">Browse <a href="inventory.html">the lot online</a> or walk it in person — we'll match your budget to the right vehicle.</div>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <div class="t">Drive it home</div>
+          <div class="d">Paperwork on site, plates handled, most deals done the same day you walk in.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trade" class="section-pad" style="padding-top:0">
+    <div class="container">
+      <div class="trade-banner">
+        <div>
+          <h2>Got a trade? It's your down payment.</h2>
+          <p>Bring your current vehicle by the lot — running or not, we'll put a real cash number on it in about 15 minutes, no appointment needed.</p>
+        </div>
+        <a href="tel:2602188260" class="btn btn-primary">Value my trade</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">
+      <strong>Discount Auto LLC</strong>
+      <span>© 2026 · 4280 E Lincoln Hwy, Merrillville, IN 46410</span>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="#" onclick="return false">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="site.js"></script>
+<script src="financing.js"></script>
+</body>
+</html>

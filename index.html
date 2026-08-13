@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Discount Auto LLC — Used Cars in Merrillville, IN</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Hand-picked used cars, trucks, SUVs and vans in Merrillville, IN. On-site financing, trade-ins welcome, no games.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="container">
+    <div class="utility-left">
+      <span class="addr">4280 E Lincoln Hwy (US 30), Merrillville, IN 46410</span>
+      <span class="open-dot">Open today 10 am – 7 pm</span>
+    </div>
+    <div class="utility-right">
+      <a href="tel:2602188260">Sales — Call or Text (260) 218-8260</a>
+      <span class="sep">|</span>
+      <a href="tel:2197754702">Support 219-775-4702</a>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container bar">
+    <a href="index.html" class="brand">
+      <div class="brand-badge">DA</div>
+      <div>
+        <div class="brand-name">Discount Auto</div>
+        <div class="brand-sub">Merrillville, Indiana</div>
+      </div>
+    </a>
+    <nav class="main-nav">
+      <a href="inventory.html">Inventory</a>
+      <a href="financing.html">Financing</a>
+      <a href="financing.html#trade">Trade-In</a>
+      <a href="#service">Service</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit Us</a>
+    </nav>
+    <a href="tel:2602188260" class="btn btn-primary header-cta">Call or Text</a>
+    <button class="hamburger" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+<nav class="mobile-nav">
+  <div class="container">
+    <a href="inventory.html">Inventory</a>
+    <a href="financing.html">Financing</a>
+    <a href="financing.html#trade">Trade-In</a>
+    <a href="#service">Service</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Visit Us</a>
+    <a href="tel:2602188260" class="btn btn-primary btn-block">Call or Text</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="banner">
+    <div class="container">
+      <span class="tag">We've moved</span>
+      <span>Now at 4280 E Lincoln Hwy (US 30) — stop by and see the new lot.</span>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <div>
+        <div class="eyebrow">Used Car Dealer · US 30 · Merrillville, IN</div>
+        <h1>Good cars.<br><span class="accent">Affordable prices.</span></h1>
+        <p class="lede">Hand-picked used cars, trucks, SUVs and vans — priced to move, with financing that works for real budgets. No games, no pressure.</p>
+        <div class="hero-ctas">
+          <a href="inventory.html" class="btn btn-primary">Browse inventory</a>
+          <a href="financing.html#trade" class="btn btn-ghost-light">Value your trade</a>
+        </div>
+        <ul class="trust-list">
+          <li>Family owned</li>
+          <li>On-site financing</li>
+          <li>Trade-ins welcome</li>
+        </ul>
+      </div>
+      <div class="hero-media">
+        <div class="frame">
+          <div class="photo-slot" data-label="Drop a photo of the lot or a hero vehicle"></div>
+        </div>
+        <div class="tag-corner">On US 30 in Merrillville</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-head">
+        <h2>Shop by type</h2>
+        <a href="inventory.html" class="section-link">View all inventory →</a>
+      </div>
+      <div class="type-grid">
+        <a href="inventory.html?type=Car" class="type-card">
+          <div class="photo-slot" data-label="Sedan photo"></div>
+          <div class="label"><span>Cars</span><span>→</span></div>
+        </a>
+        <a href="inventory.html?type=Truck" class="type-card">
+          <div class="photo-slot" data-label="Truck photo"></div>
+          <div class="label"><span>Trucks</span><span>→</span></div>
+        </a>
+        <a href="inventory.html?type=SUV" class="type-card">
+          <div class="photo-slot" data-label="SUV photo"></div>
+          <div class="label"><span>SUVs</span><span>→</span></div>
+        </a>
+        <a href="inventory.html?type=Van" class="type-card">
+          <div class="photo-slot" data-label="Van photo"></div>
+          <div class="label"><span>Vans</span><span>→</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="inventory" class="section-pad">
+    <div class="container">
+      <div class="section-head" style="margin-bottom: 8px">
+        <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap">
+          <h2>Fresh on the lot</h2>
+          <span class="sample-tag">Sample listings</span>
+        </div>
+      </div>
+      <p style="margin: 0 0 26px; color: var(--muted); font-size: 14.5px">Representative vehicles — the live site pulls these from your inventory feed automatically.</p>
+      <div class="veh-grid" id="featured-grid"></div>
+    </div>
+  </section>
+
+  <section id="financing" class="section-dark">
+    <div class="container section-pad split">
+      <div>
+        <div class="eyebrow">Financing &amp; trade-ins</div>
+        <h2>Get approved before you leave the couch</h2>
+        <p class="lede">Good credit, bad credit, first-time buyer — our application takes about five minutes, and we work with lenders who say yes. Bringing a trade? We'll put a real number on it.</p>
+        <div style="display:flex; gap:14px; flex-wrap:wrap">
+          <a href="financing.html" class="btn btn-primary">Apply online</a>
+          <a href="financing.html" class="btn btn-ghost-light">Loan calculator</a>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div class="t">Apply online</div><div class="d">Five minutes, secure, no obligation.</div></div>
+        <div class="step"><div class="num">2</div><div class="t">Pick your car</div><div class="d">We'll match your budget to the right vehicle.</div></div>
+        <div class="step"><div class="num">3</div><div class="t">Drive it home</div><div class="d">Most deals done same day.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="section-pad">
+    <div class="container">
+      <div class="section-head">
+        <h2>Neighbors trust us</h2>
+        <div style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:15px">
+          <span class="stars">★★★★★</span><span>Rated on Google</span>
+        </div>
+      </div>
+      <div class="review-grid">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"Straight shooters. The truck was exactly as described and the price didn't change when I sat down. In and out in an afternoon."</p>
+          <div class="who">Marcus T. · Gary, IN</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"My credit isn't great and they still got me financed at a payment I could live with. First dealership that didn't make me feel judged."</p>
+          <div class="who">Danielle R. · Hobart, IN</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"Bought our minivan here two years ago, zero problems since. When my son needs his first car, we're coming back."</p>
+          <div class="who">Luis A. · Merrillville, IN</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="service" class="section-pad" style="padding-top: 0">
+    <div class="container">
+      <div class="panel split">
+        <div class="media">
+          <div class="photo-slot" data-label="Drop a photo of the service shop"></div>
+        </div>
+        <div class="content">
+          <div class="eyebrow" style="margin-bottom:0; color: var(--brick)">Service department</div>
+          <h2>We fix them too</h2>
+          <p>Our full-service shop, Discount Auto Repair, handles oil changes, brakes, tires, suspension and engine work — for the cars we sell and the one you already own.</p>
+          <div class="ctas">
+            <a href="https://discount-auto-repair-website.vercel.app/" target="_blank" rel="noopener" class="btn btn-ghost" style="border-color: var(--ink)">Visit Discount Auto Repair</a>
+            <a href="tel:2602188260" class="btn btn-ghost" style="border-color: var(--ink)">Book service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit" class="section-dark">
+    <div class="container section-pad visit-grid">
+      <div>
+        <div class="eyebrow">Visit the lot</div>
+        <h2 style="font-size: 34px; margin-bottom: 18px">Right on US 30</h2>
+        <div style="font-size: 17px; font-weight: 600; margin-bottom: 4px">4280 E Lincoln Hwy</div>
+        <div style="font-size: 14.5px; color: rgba(244,241,234,.7); margin-bottom: 20px">Merrillville, IN 46410</div>
+        <div class="hours-table">
+          <div class="hours-row"><span class="d">Monday – Friday</span><span class="t">10:00 am – 7:00 pm</span></div>
+          <div class="hours-row"><span class="d">Saturday</span><span class="t">10:00 am – 5:00 pm</span></div>
+          <div class="hours-row"><span class="d">Sunday</span><span class="t">Closed</span></div>
+        </div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap">
+          <a href="tel:2602188260" class="btn btn-primary">Call or text us</a>
+          <a href="https://www.google.com/maps/place/Discount+Auto+LLC" target="_blank" rel="noopener" class="btn btn-ghost-light">Get directions</a>
+        </div>
+      </div>
+      <div style="position:relative; min-height: 260px; border: 3px solid var(--paper); box-shadow: -8px 8px 0 var(--brick)">
+        <div class="photo-slot" data-label="Drop a storefront photo or map screenshot"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">
+      <strong>Discount Auto LLC</strong>
+      <span>© 2026 · 4280 E Lincoln Hwy, Merrillville, IN 46410</span>
+    </div>
+    <div class="footer-links">
+      <a href="#" onclick="return false">Facebook</a>
+      <a href="#" onclick="return false">YouTube</a>
+      <a href="#" onclick="return false">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="site.js"></script>
+<script>
+  document.getElementById("featured-grid").innerHTML =
+    window.VEHICLES.slice(0, 3).map(vehCardHTML).join("");
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Inventory — Discount Auto LLC</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Browse used cars, trucks, SUVs and vans on the lot at Discount Auto LLC in Merrillville, IN.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="container">
+    <div class="utility-left"><span class="addr">4280 E Lincoln Hwy (US 30), Merrillville, IN 46410</span></div>
+    <div class="utility-right"><a href="tel:2602188260">Sales — Call or Text (260) 218-8260</a></div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container bar">
+    <a href="index.html" class="brand">
+      <div class="brand-badge">DA</div>
+      <div>
+        <div class="brand-name">Discount Auto</div>
+        <div class="brand-sub">Merrillville, Indiana</div>
+      </div>
+    </a>
+    <nav class="main-nav">
+      <a href="inventory.html" class="active">Inventory</a>
+      <a href="financing.html">Financing</a>
+      <a href="financing.html">Trade-In</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="index.html#visit">Visit Us</a>
+    </nav>
+    <a href="tel:2602188260" class="btn btn-primary header-cta">Call or Text</a>
+    <button class="hamburger" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+<nav class="mobile-nav">
+  <div class="container">
+    <a href="inventory.html" class="active">Inventory</a>
+    <a href="financing.html">Financing</a>
+    <a href="financing.html">Trade-In</a>
+    <a href="index.html#reviews">Reviews</a>
+    <a href="index.html#visit">Visit Us</a>
+    <a href="tel:2602188260" class="btn btn-primary btn-block">Call or Text</a>
+  </div>
+</nav>
+
+<main>
+  <div class="inv-head">
+    <div class="container">
+      <h1>Inventory</h1>
+      <div class="count"><span id="head-count">9</span> vehicles on the lot · updated daily</div>
+    </div>
+  </div>
+
+  <section class="section-pad">
+    <div class="container inv-layout">
+
+      <aside class="filters">
+        <div class="f-title">Filter</div>
+        <div>
+          <div class="f-label">Body type</div>
+          <div class="checkrow-group">
+            <label class="checkrow"><input type="checkbox" id="f-car" checked>Cars</label>
+            <label class="checkrow"><input type="checkbox" id="f-truck" checked>Trucks</label>
+            <label class="checkrow"><input type="checkbox" id="f-suv" checked>SUVs</label>
+            <label class="checkrow"><input type="checkbox" id="f-van" checked>Vans</label>
+          </div>
+        </div>
+        <div>
+          <div class="f-label">Max price</div>
+          <div class="range-row">
+            <input type="range" id="f-price" min="8000" max="16000" step="500" value="16000">
+          </div>
+          <div class="range-value">Up to <span id="f-price-label">$16,000</span></div>
+        </div>
+        <div class="fine-print">Don't see what you need? We'll find it. <a href="tel:2602188260">Call us</a> about our vehicle finder service.</div>
+      </aside>
+
+      <div>
+        <div class="results-bar">
+          <div class="results-count"><span id="result-count">9</span> vehicles <span class="sample-tag">Sample listings</span></div>
+          <label class="sort-select">Sort by
+            <select id="sort-select">
+              <option value="price-asc">Price: low to high</option>
+              <option value="price-desc">Price: high to low</option>
+              <option value="miles-asc">Mileage: lowest</option>
+              <option value="year-desc">Year: newest</option>
+            </select>
+          </label>
+        </div>
+        <div class="veh-grid" id="results-grid"></div>
+        <div class="empty-state" id="empty-state" style="display:none">No matches — loosen the filters or <a href="tel:2602188260">call us</a>, we'll find it.</div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">
+      <strong>Discount Auto LLC</strong>
+      <span>© 2026 · 4280 E Lincoln Hwy, Merrillville, IN 46410</span>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="financing.html">Financing</a>
+      <a href="#" onclick="return false">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="site.js"></script>
+<script src="inventory.js"></script>
+</body>
+</html>
