@@ -14,6 +14,18 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("veh-meta").innerHTML =
     metaBits.map(b => `<span>${b}</span>`).join("<span>·</span>");
 
+  // Carfax lookup — same DealerCarSearch partner link the current site uses.
+  // No VIN means no report to look up, so drop the button rather than send
+  // someone to an empty search.
+  const carfax = document.getElementById("carfax-link");
+  if (vehicle.vin) {
+    carfax.href = "https://www.carfax.com/cfm/check_order.cfm?partner=DCS_2&vin=" +
+      encodeURIComponent(vehicle.vin);
+    carfax.title = `Carfax history for VIN ${vehicle.vin}`;
+  } else {
+    carfax.remove();
+  }
+
   // --- gallery ---
   const mainPhoto = document.getElementById("main-photo");
   const thumbRow = document.querySelector(".thumb-row");

@@ -47,8 +47,27 @@ does *not* update, so check them by hand if the lot changes a lot:
 - the body-type lists at the top of the script, which map model names to
   Car / Truck / SUV / Van. A model it hasn't seen falls back to "Car".
 
-Lot and service photos on the home page are still placeholders — search the
-HTML for `data-label` to find them.
+The "shop by type" tiles on the home page also pull from the inventory: each
+shows the newest vehicle of that body type, with a live count, so they update
+themselves when `data.js` is regenerated. To pin a specific car to a tile,
+replace the `.media` fill for that card in the script at the foot of
+[`index.html`](index.html).
+
+The hero, service and map photos are still placeholders — search the HTML for
+`data-label` to find them.
+
+## Carfax
+
+Each vehicle page links to Carfax through the dealership's existing
+DealerCarSearch partner lookup:
+
+```
+https://www.carfax.com/cfm/check_order.cfm?partner=DCS_2&vin=<VIN>
+```
+
+That's the same link the current cars-nwi.com site uses. The VIN comes from
+`data.js`; a vehicle with no VIN drops the button instead of opening an empty
+search.
 
 ## Colour and contrast
 

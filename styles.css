@@ -232,9 +232,13 @@ section { background: var(--paper); }
 @media (min-width: 900px) { .type-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; } }
 .type-card { display: block; border: 2.5px solid var(--ink); background: #fff; color: var(--ink); border-radius: var(--r); overflow: hidden; }
 .type-card:hover { box-shadow: 6px 6px 0 var(--sun); color: var(--ink); }
+.type-card .media { aspect-ratio: 4/3; }
 .type-card .photo-slot { aspect-ratio: 4/3; }
 .type-card .label { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-top: 2.5px solid var(--ink); font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: 1.5px; text-transform: uppercase; }
-.type-card .label span:last-child { color: var(--blue); }
+.type-card .type-count {
+  background: var(--sun); color: var(--ink); border-radius: 999px;
+  min-width: 26px; padding: 1px 8px; text-align: center; font-size: 14px;
+}
 
 /* ---------- Vehicle cards ---------- */
 .veh-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }

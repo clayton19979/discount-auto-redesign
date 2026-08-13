@@ -96,22 +96,23 @@
         <h2>Shop by type</h2>
         <a href="inventory.html" class="section-link">View all inventory →</a>
       </div>
+      <!-- photos + counts are filled from the live inventory, see the script at the foot of this page -->
       <div class="type-grid">
-        <a href="inventory.html?type=Car" class="type-card">
-          <div class="photo-slot" data-label="Sedan photo"></div>
-          <div class="label"><span>Cars</span><span>→</span></div>
+        <a href="inventory.html?type=Car" class="type-card" data-type="Car">
+          <div class="media"></div>
+          <div class="label"><span>Cars</span><span class="type-count"></span></div>
         </a>
-        <a href="inventory.html?type=Truck" class="type-card">
-          <div class="photo-slot" data-label="Truck photo"></div>
-          <div class="label"><span>Trucks</span><span>→</span></div>
+        <a href="inventory.html?type=Truck" class="type-card" data-type="Truck">
+          <div class="media"></div>
+          <div class="label"><span>Trucks</span><span class="type-count"></span></div>
         </a>
-        <a href="inventory.html?type=SUV" class="type-card">
-          <div class="photo-slot" data-label="SUV photo"></div>
-          <div class="label"><span>SUVs</span><span>→</span></div>
+        <a href="inventory.html?type=SUV" class="type-card" data-type="SUV">
+          <div class="media"></div>
+          <div class="label"><span>SUVs</span><span class="type-count"></span></div>
         </a>
-        <a href="inventory.html?type=Van" class="type-card">
-          <div class="photo-slot" data-label="Van photo"></div>
-          <div class="label"><span>Vans</span><span>→</span></div>
+        <a href="inventory.html?type=Van" class="type-card" data-type="Van">
+          <div class="media"></div>
+          <div class="label"><span>Vans</span><span class="type-count"></span></div>
         </a>
       </div>
     </div>
@@ -239,6 +240,24 @@
   const featured = window.VEHICLES.filter(v => v.photos.length).slice(0, 6);
   document.getElementById("featured-grid").innerHTML = featured.map(vehCardHTML).join("");
   document.getElementById("total-count").textContent = window.VEHICLES.length;
+
+  // Each "shop by type" card shows the newest vehicle of that type on the lot,
+  // so the tiles refresh themselves whenever data.js is regenerated.
+  document.querySelectorAll(".type-card").forEach(card => {
+    const type = card.dataset.type;
+    const matches = window.VEHICLES.filter(v => v.type === type);
+    const lead = matches.find(v => v.photos.length);
+    const media = card.querySelector(".media");
+
+    // VEHICLES is sorted newest-first, so the first match is the newest.
+    // alt is empty on purpose: the card's own "Cars"/"Trucks" label already
+    // names the link, so describing the car again is noise in a screen reader.
+    media.innerHTML = lead
+      ? `<img class="veh-photo" src="${window.photoURL(lead, 0)}" alt="" loading="lazy" decoding="async">`
+      : `<div class="photo-slot">${photoSlotHTML(type)}</div>`;
+
+    card.querySelector(".type-count").textContent = matches.length || "—";
+  });
 </script>
 </body>
 </html>
