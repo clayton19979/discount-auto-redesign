@@ -1,44 +1,81 @@
-// Vehicle detail page: reads ?id= from the URL, renders specs + payment calculator for that vehicle.
+// Vehicle detail page: reads ?id= from the URL, renders the photo gallery,
+// specs and payment calculator for that vehicle.
 
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(location.search);
-  const wantedId = params.get("id");
-  const vehicle = window.VEHICLES.find(v => v.id === wantedId) || window.VEHICLES[1];
+  const vehicle = window.VEHICLES.find(v => v.id === params.get("id")) || window.VEHICLES[0];
 
-  document.title = `${vehicle.title} — Discount Auto LLC`;
+  document.title = `${vehicle.fullTitle} — Discount Auto LLC`;
   document.getElementById("crumb-title").textContent = vehicle.title;
-  document.getElementById("main-photo").insertAdjacentHTML(
-    "afterbegin",
-    `<div class="photo-slot" style="position:absolute; inset:0">${photoSlotHTML("Main photo — " + vehicle.title)}</div>`
-  );
-  document.getElementById("main-badge").textContent = vehicle.badge;
-
-  document.getElementById("veh-title").textContent = vehicle.title;
-  document.getElementById("veh-meta").innerHTML =
-    `<span>${vehicle.milesLabel} miles</span><span>·</span><span>${vehicle.drive}</span><span>·</span><span>Stock ${vehicle.stock}</span>`;
+  document.getElementById("veh-title").textContent = vehicle.fullTitle;
   document.getElementById("veh-price").textContent = vehicle.priceLabel;
 
+  const metaBits = [`${vehicle.milesLabel} miles`, vehicle.drive, `Stock ${vehicle.stock}`].filter(Boolean);
+  document.getElementById("veh-meta").innerHTML =
+    metaBits.map(b => `<span>${b}</span>`).join("<span>·</span>");
+
+  // --- gallery ---
+  const mainPhoto = document.getElementById("main-photo");
+  const thumbRow = document.querySelector(".thumb-row");
+  const badge = document.getElementById("main-badge");
+
+  if (vehicle.badge) badge.textContent = vehicle.badge;
+  else badge.remove();
+
+  let current = 0;
+  function showPhoto(i) {
+    current = i;
+    mainPhoto.querySelectorAll(".veh-photo, .photo-slot").forEach(el => el.remove());
+    mainPhoto.insertAdjacentHTML("afterbegin", vehPhotoHTML(vehicle, i, { eager: true }));
+    thumbRow.querySelectorAll("button").forEach((b, n) =>
+      b.classList.toggle("active", n === i));
+  }
+
+  const thumbCount = Math.min(vehicle.photos.length, 8);
+  if (thumbCount > 1) {
+    thumbRow.innerHTML = Array.from({ length: thumbCount }, (_, i) =>
+      `<button type="button" class="thumb" aria-label="Show photo ${i + 1} of ${thumbCount}">
+         ${vehPhotoHTML(vehicle, i)}
+       </button>`).join("");
+    thumbRow.querySelectorAll("button").forEach((b, i) =>
+      b.addEventListener("click", () => showPhoto(i)));
+  } else {
+    thumbRow.remove();
+  }
+  showPhoto(0);
+
+  const photoCount = vehicle.photos.length;
+  const counter = document.getElementById("photo-count");
+  if (counter) counter.textContent = photoCount ? `${photoCount} photos` : "";
+
+  // --- specs ---
   const specRows = [
     ["Mileage", vehicle.milesLabel],
     ["Engine", vehicle.engine],
     ["Transmission", vehicle.trans],
     ["Drivetrain", vehicle.drive],
-    ["Exterior", vehicle.exterior],
+    ["Exterior", vehicle.color],
     ["Interior", vehicle.interior],
-    ["Body type", vehicle.cab || vehicle.type],
+    ["Body type", vehicle.type],
     ["Stock #", vehicle.stock],
-  ];
+    ["VIN", vehicle.vin],
+  ].filter(([, v]) => v);
   document.getElementById("spec-grid").innerHTML = specRows
     .map(([k, v]) => `<div class="spec-row"><span class="k">${k}</span><span>${v}</span></div>`)
     .join("");
 
-  document.getElementById("similar-grid").innerHTML = window.VEHICLES
-    .filter(v => v.id !== vehicle.id)
-    .slice(0, 3)
-    .map(vehCardHTML)
-    .join("");
+  // --- similar: same body type, nearest price ---
+  const similar = window.VEHICLES
+    .filter(v => v.id !== vehicle.id && v.type === vehicle.type)
+    .sort((a, b) => Math.abs((a.price ?? 0) - (vehicle.price ?? 0)) -
+                    Math.abs((b.price ?? 0) - (vehicle.price ?? 0)))
+    .slice(0, 3);
+  document.getElementById("similar-grid").innerHTML = similar.map(vehCardHTML).join("");
 
   // --- payment calculator ---
+  const calc = document.querySelector(".calc");
+  if (vehicle.price == null) { calc.remove(); return; }
+
   const downRange = document.getElementById("down-range");
   const downLabel = document.getElementById("down-label");
   const monthlyAmt = document.getElementById("monthly-amt");
@@ -46,7 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const APR = 0.099;
   let term = 60;
 
-  downRange.max = String(Math.max(1000, Math.round(vehicle.price * 0.6)));
+  downRange.max = String(Math.max(500, Math.round(vehicle.price * 0.6 / 250) * 250));
+  downRange.value = String(Math.min(+downRange.max, 1500));
 
   function recalc() {
     const down = Number(downRange.value);

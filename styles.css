@@ -201,6 +201,9 @@ nav.main-nav a.active { border-bottom: 3px solid var(--sun); padding-bottom: 2px
   .hero-media .frame { box-shadow: 12px 12px 0 var(--sun); }
 }
 
+/* ---------- Vehicle photos ---------- */
+.veh-photo { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--paper-soft); }
+
 /* ---------- Photo placeholder ---------- */
 .photo-slot {
   position: relative; width: 100%; height: 100%;
@@ -359,8 +362,20 @@ footer.site-footer .container { padding: 26px 20px; display: flex; flex-directio
 @media (min-width: 1000px) { .detail-layout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 40px; align-items: start; padding: 24px 0 64px; } }
 
 .main-photo { position: relative; width: 100%; aspect-ratio: 4/3; border: 3px solid var(--ink); box-shadow: 6px 6px 0 rgba(27,47,94,.14); margin-bottom: 12px; border-radius: 14px; overflow: hidden; }
+.photo-count {
+  position: absolute; bottom: 10px; right: 12px; background: rgba(20,33,63,.88); color: var(--paper);
+  font-size: 11.5px; font-weight: 600; padding: 4px 9px; border-radius: 6px; pointer-events: none;
+}
 .thumb-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 24px; }
+@media (min-width: 560px) { .thumb-row { grid-template-columns: repeat(8, minmax(0, 1fr)); } }
 .thumb-row .photo-slot { aspect-ratio: 4/3; border-width: 1.5px; border-radius: 10px; }
+.thumb {
+  padding: 0; aspect-ratio: 4/3; overflow: hidden; cursor: pointer;
+  border: 2px solid var(--ink); border-radius: 9px; background: var(--paper-soft);
+}
+.thumb .veh-photo, .thumb .photo-slot { width: 100%; height: 100%; }
+.thumb.active { border-color: var(--sun); box-shadow: 0 0 0 2px var(--ink); }
+.thumb:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 
 .specs h2 { font-size: 24px; margin-bottom: 14px; }
 .spec-grid { display: grid; grid-template-columns: 1fr; gap: 0; border-top: 2px solid var(--ink); }

@@ -119,13 +119,10 @@
 
   <section id="inventory" class="section-pad">
     <div class="container">
-      <div class="section-head" style="margin-bottom: 8px">
-        <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap">
-          <h2>Fresh on the lot</h2>
-          <span class="sample-tag">Sample listings</span>
-        </div>
+      <div class="section-head">
+        <h2>Fresh on the lot</h2>
+        <a href="inventory.html" class="section-link">See all <span id="total-count"></span> vehicles →</a>
       </div>
-      <p style="margin: 0 0 26px; color: var(--muted); font-size: 14.5px">Representative vehicles — the live site pulls these from your inventory feed automatically.</p>
       <div class="veh-grid" id="featured-grid"></div>
     </div>
   </section>
@@ -238,8 +235,10 @@
 <script src="data.js"></script>
 <script src="site.js"></script>
 <script>
-  document.getElementById("featured-grid").innerHTML =
-    window.VEHICLES.slice(0, 3).map(vehCardHTML).join("");
+  // newest first, and only cars we have a photo for — this is the shop window
+  const featured = window.VEHICLES.filter(v => v.photos.length).slice(0, 6);
+  document.getElementById("featured-grid").innerHTML = featured.map(vehCardHTML).join("");
+  document.getElementById("total-count").textContent = window.VEHICLES.length;
 </script>
 </body>
 </html>

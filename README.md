@@ -20,17 +20,35 @@ so relative links behave the same as they will on Vercel:
 npx serve .
 ```
 
-## Editing inventory
+## Inventory
 
-All vehicle data lives in one place: [`data.js`](data.js). Each entry there
-drives its card everywhere it appears (home, inventory grid, vehicle detail,
-"similar on the lot"). The current list is the same sample data from the
-design mockup — replace it with a real feed, or hand-edit the array, once
-live inventory is ready.
+[`data.js`](data.js) holds the full lot — 126 vehicles, pulled from the live
+listings on <https://cars-nwi.com>. Each entry drives its card everywhere it
+appears (home, inventory grid, vehicle detail, "similar on the lot").
 
-Photos are placeholder boxes (`.photo-slot`) until real vehicle/lot photos are
-dropped in — search each HTML file for `data-label` to find every slot and
-its caption.
+**Photos are referenced, not committed.** `data.js` stores only the filenames;
+`PHOTO_BASE + vehicle id + filename` builds the URL, and the images are served
+from the dealership's existing DealerCarSearch CDN. That keeps the repo small
+and the photos current as stock turns over. If a photo ever fails to load the
+card falls back to a striped placeholder rather than a broken-image icon.
+
+### Refreshing after the lot changes
+
+```bash
+python tools/refresh-inventory.py
+```
+
+That re-scrapes the listings and galleries and rewrites `data.js` (takes a
+couple of minutes — it fetches one detail page per vehicle). Two things it
+does *not* update, so check them by hand if the lot changes a lot:
+
+- the price slider's `min`/`max` in [`inventory.html`](inventory.html) — the
+  script prints the new price range so you can compare
+- the body-type lists at the top of the script, which map model names to
+  Car / Truck / SUV / Van. A model it hasn't seen falls back to "Car".
+
+Lot and service photos on the home page are still placeholders — search the
+HTML for `data-label` to find them.
 
 ## Colour and contrast
 
@@ -63,7 +81,11 @@ only, so input **placeholder** colours need checking by hand.
 - "Visit Discount Auto Repair" on the home page service section links to
   <https://discount-auto-repair-website.vercel.app/>, the shop's existing
   redesign — update if that site moves to a permanent domain.
-- Vehicle photos, lot photos, and the Google Maps link are placeholders.
+- Vehicle photos load from the DealerCarSearch CDN. If the dealership ever
+  leaves that platform the URLs go dead — self-host the images at that point.
+- The home page lot/service photos and the Google Maps link are placeholders.
+- `data.js` is a snapshot, not a live feed. Re-run the refresh script to
+  update it; sold cars stay listed until you do.
 
 ## Deploying to Vercel
 

@@ -12,16 +12,31 @@ function photoSlotHTML(label) {
   return CAR_ICON + `<span>${label}</span>`;
 }
 
-// Renders a vehicle result card. `dark` swaps the card to sit on a dark section (see .similar on vehicle.html).
-function vehCardHTML(v) {
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+// A vehicle photo that degrades to the striped placeholder if the CDN doesn't
+// answer — the alternative is a broken-image icon in front of a customer.
+function vehPhotoHTML(v, i, { eager = false } = {}) {
+  const url = window.photoURL(v, i);
+  const label = esc(v.fullTitle || v.title);
+  if (!url) return `<div class="photo-slot">${photoSlotHTML(label)}</div>`;
+  return `<img class="veh-photo" src="${esc(url)}" alt="${label}"
+    loading="${eager ? 'eager' : 'lazy'}" decoding="async"
+    onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'photo-slot',innerHTML:photoSlotHTML(${JSON.stringify(label)})}))">`;
+}
+
+// `i` is the card's position in its grid: the first row is above the fold on
+// most screens, so those load eagerly instead of waiting for a scroll.
+function vehCardHTML(v, i = 99) {
   return `<a class="veh-card" href="vehicle.html?id=${encodeURIComponent(v.id)}">
     <div class="media">
-      <div class="photo-slot">${photoSlotHTML(v.title + " photo")}</div>
-      <span class="badge">${v.badge}</span>
+      ${vehPhotoHTML(v, 0, { eager: i < 3 })}
+      ${v.badge ? `<span class="badge">${esc(v.badge)}</span>` : ''}
     </div>
     <div class="body">
-      <div class="title">${v.title}</div>
-      <div class="meta"><span>${v.milesLabel} mi</span><span>·</span><span>${v.drive}</span><span>·</span><span>${v.type}</span></div>
+      <div class="title">${esc(v.title)}</div>
+      <div class="meta"><span>${v.milesLabel} mi</span><span>·</span><span>${esc(v.drive)}</span><span>·</span><span>${esc(v.type)}</span></div>
       <div class="foot">
         <div class="price">${v.priceLabel}</div>
         <span class="details-link">Details →</span>
